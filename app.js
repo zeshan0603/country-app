@@ -19,3 +19,18 @@ const getByCapital = `https://restcountries.com/v3.1/capital/${capital}`;
 
 // This is the same as the above
 // axios.get(getAllCountries).then((res) => console.log(res.data));
+
+// Hamburger Menu (navbar)
+const hambMenu = document.querySelector(".hamburger");
+const hambMenuX = document.querySelector(".x-hamb");
+const ulNav = document.querySelector(".active-nav-menu");
+
+hambMenu.addEventListener("click", () => {
+  ulNav.style.display = "flex";
+  ulNav.style.right = "0";
+});
+
+hambMenuX.addEventListener('click', () => {
+  ulNav.style.right = "-100%";
+  
+})

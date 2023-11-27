@@ -16,6 +16,12 @@
 
 * {
   box-sizing: border-box;
+  /* outline: 1px solid black; */
+}
+
+*::selection {
+  background-color: black;
+  color: white;
 }
 
 body {
@@ -47,12 +53,13 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 1em var(--left-right-space-em-big);
+  z-index: 1;
 }
 
 #nav > h1 {
-    cursor: pointer;
-    font-size: 2rem;
-    font-weight: var(--medium-weight-500);
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: var(--medium-weight-500);
 }
 
 #nav > ul {
@@ -60,6 +67,7 @@ button {
   justify-content: space-between;
   align-items: center;
   padding: 0;
+  margin: 0;
   list-style: none;
   width: 40%;
   min-width: 15rem;
@@ -70,40 +78,86 @@ button {
   color: black;
   font-weight: var(--regular-weight-400);
   font-size: 1.5rem;
+  display: inline-block;
+  position: relative;
+}
+
+#nav > ul > li a::after {
+    content: '';
+    width: 0;
+    height: 1px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: black;
+    transition: width .2s;
+}
+
+#nav > ul > li a:hover::after {
+    width: 100%;
 }
 
 .hamburger {
-    display: none;
-    font-size: 2rem;
-    cursor: pointer;
+  display: none;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: rotate 0.2s;
+}
+
+.hamburger:hover {
+  rotate: 90deg;
+}
+
+.x-hamb {
+  display: none;
+  position: absolute;
+  top: 3%;
+  left: 10%;
+  cursor: pointer;
+  font-size: 1.75rem;
 }
 
 @media screen and (max-width: 1000px) {
-    #nav {
-        padding-inline: var(--left-right-space-em-med);
-    }
+  #nav {
+    padding-inline: var(--left-right-space-em-med);
+  }
 }
 
 @media screen and (max-width: 768px) {
-    #nav > ul {
-        display: none;
-    }
+  #nav > ul {
+    flex-direction: column;
+    justify-content: start;
+    gap: 5em;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 200px;
+    min-height: 100vh;
+    background-color: white;
+    border-left: 1px solid black;
+    padding-top: 50px;
+    transition: right .5s;
+  }
 
-    .hamburger {
-        display: block;
-    }
+  .hamburger {
+    display: block;
+  }
+
+  .x-hamb {
+    display: block;
+  }
 }
 
 @media screen and (max-width: 600px) {
-    #nav {
-        padding-inline: var(--left-right-space-em-sm);
-    }
+  #nav {
+    padding-inline: var(--left-right-space-em-sm);
+  }
 
-    #nav > h1 {
-        font-size: 1.75rem;
-    }
+  #nav > h1 {
+    font-size: 1.75rem;
+  }
 
-    .hamburger {
-        font-size: 1.75rem;
-    }
+  .hamburger {
+    font-size: 1.75rem;
+  }
 }
