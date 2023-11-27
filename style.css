@@ -74,11 +74,22 @@ button {
   cursor: pointer;
   font-size: 2rem;
   font-weight: var(--medium-weight-500);
+  position: relative;
   transition: scale 0.2s;
 }
 
 #nav > h1:hover {
   scale: 1.05;
+}
+
+#nav > h1::after {
+  content: 'Click to change theme!';
+  color: var(--color-black);
+  font-size: .75rem;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  transition: color var(--transition-time);
 }
 
 #nav > ul {
@@ -187,6 +198,10 @@ button {
 
   .x-hamb {
     display: block;
+  }
+
+  #nav > h1::after {
+    content: 'Tap to change theme!';
   }
 }
 
