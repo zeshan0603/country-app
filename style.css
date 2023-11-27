@@ -244,6 +244,7 @@ button {
 
 #hero-section input {
   background-color: #f6a77a;
+  color: var(--color-black);
   border: none;
   padding: 1em 1em 1em 5em;
   border-radius: 10px;
