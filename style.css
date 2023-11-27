@@ -7,29 +7,42 @@
 
   --left-right-space-em-big: 11.25em;
   --left-right-space-em-med: 8em;
-  --left-right-space-em-sm: 1em;
+  --left-right-space-em-sm: 5em;
+  --left-right-space-em-xsm: 1em;
 
   --left-right-space-rem-big: 11.25rem;
   --left-right-space-rem-med: 8rem;
-  --left-right-space-rem-sm: 1rem;
+  --left-right-space-rem-sm: 5rem;
+  --left-right-space-rem-xsm: 1rem;
+
+  --color-black: black;
+  --color-white: white;
+
+  --transition-time: 0.3s;
 }
 
 * {
   box-sizing: border-box;
-  /* outline: 1px solid black; */
 }
 
 *::selection {
-  background-color: black;
-  color: white;
+  background-color: var(--color-black);
+  color: var(--color-white);
 }
 
 body {
   margin: 0;
   padding: 0;
-  color: black;
-  background-color: white;
+  overflow-x: hidden;
+  color: var(--color-black);
+  background-color: var(--color-white);
   font-family: "Poppins", sans-serif;
+  transition: background-color var(--transition-time);
+}
+
+body.active {
+  --color-black: rgb(227, 227, 227);
+  --color-white: rgb(43, 43, 43);
 }
 
 h1,
@@ -48,18 +61,24 @@ button {
   position: fixed;
   top: 0;
   width: 100%;
-  outline: 1px solid black;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1em var(--left-right-space-em-big);
   z-index: 1;
+  background-color: var(--color-white);
+  transition: box-shadow 0.3s, background-color var(--transition-time);
 }
 
 #nav > h1 {
   cursor: pointer;
   font-size: 2rem;
   font-weight: var(--medium-weight-500);
+  transition: scale 0.2s;
+}
+
+#nav > h1:hover {
+  scale: 1.05;
 }
 
 #nav > ul {
@@ -75,37 +94,51 @@ button {
 
 #nav > ul > li a {
   text-decoration: none;
-  color: black;
+  color: var(--color-black);
   font-weight: var(--regular-weight-400);
   font-size: 1.5rem;
   display: inline-block;
   position: relative;
+  transition: color var(--transition-time);
 }
 
 #nav > ul > li a::after {
-    content: '';
-    width: 0;
-    height: 1px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: black;
-    transition: width .2s;
+  content: "";
+  width: 0;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--color-black);
+  transition: width 0.2s, background-color var(--transition-time);
 }
 
 #nav > ul > li a:hover::after {
-    width: 100%;
+  width: 100%;
 }
 
 .hamburger {
   display: none;
   font-size: 2rem;
   cursor: pointer;
-  transition: rotate 0.2s;
+  position: relative;
+  color: var(--color-black);
+  transition: rotate 0.2s, color var(--transition-time);
 }
 
 .hamburger:hover {
   rotate: 90deg;
+}
+
+.hamburger:hover::after {
+  content: "Click Me!";
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  font-size: 0.5rem;
+  white-space: nowrap;
+  letter-spacing: 2px;
+  rotate: -90deg;
 }
 
 .x-hamb {
@@ -115,11 +148,19 @@ button {
   left: 10%;
   cursor: pointer;
   font-size: 1.75rem;
+  color: var(--color-black);
+  transition: color var(--transition-time);
 }
 
 @media screen and (max-width: 1000px) {
   #nav {
     padding-inline: var(--left-right-space-em-med);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #nav {
+    padding-inline: var(--left-right-space-em-sm);
   }
 }
 
@@ -130,13 +171,14 @@ button {
     gap: 5em;
     position: fixed;
     top: 0;
-    right: -100%;
+    right: -140%;
     width: 200px;
     min-height: 100vh;
-    background-color: white;
-    border-left: 1px solid black;
     padding-top: 50px;
-    transition: right .5s;
+    background-color: var(--color-white);
+    border-left: 1px solid var(--color-black);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    transition: right 0.4s, background-color var(--transition-time);
   }
 
   .hamburger {
@@ -148,9 +190,9 @@ button {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 690px) {
   #nav {
-    padding-inline: var(--left-right-space-em-sm);
+    padding-inline: var(--left-right-space-em-xsm);
   }
 
   #nav > h1 {
@@ -161,3 +203,171 @@ button {
     font-size: 1.75rem;
   }
 }
+
+/* Navbar End */
+/* Hero Start */
+#hero-section {
+  margin-top: 5.5rem;
+}
+
+#hero-section > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--left-right-space-rem-big);
+  gap: 6rem;
+}
+
+#hero-section > div > p {
+  width: 50%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  position: relative;
+  min-width: 15.5rem;
+}
+
+.input-container i {
+  font-size: 1.25rem;
+  padding: 0.55em 1em;
+  border-radius: 10px;
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  color: var(--color-black);
+  transition: color var(--transition-time);
+}
+
+#hero-section input {
+  background-color: #f6a77a;
+  border: none;
+  padding: 1em 1em 1em 5em;
+  border-radius: 10px;
+  transition: all 0.2s;
+  width: 100%;
+  height: 100%;
+  min-width: 12.25rem;
+  outline: none;
+  caret-color: var(--color-black);
+}
+
+#hero-section input:focus {
+  text-indent: 5px;
+}
+
+#hero-section input::placeholder {
+  color: var(--color-black);
+  font-family: "Poppins", sans-serif;
+  z-index: 4;
+  transition: color var(--transition-time);
+}
+
+@media screen and (max-width: 1000px) {
+  #hero-section > div {
+    padding-inline: var(--left-right-space-em-med);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #hero-section > div {
+    padding-inline: var(--left-right-space-em-sm);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #hero-section > div {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #hero-section > div > p {
+    width: 80%;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 690px) {
+  #hero-section > div {
+    padding-inline: var(--left-right-space-em-xsm);
+  }
+
+  #hero-section > div {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+/* End Hero */
+/* Cards Start */
+#card-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 2.5em;
+  padding: 5em var(--left-right-space-em-big);
+  position: relative;
+}
+
+.card-container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  cursor: pointer;
+  transition: transform var(--transition-time);
+}
+
+.card-container:hover {
+  transform: translateY(-10px);
+}
+
+.card-container > img {
+  width: 300px;
+  height: 170px;
+  border-radius: 10px;
+  border: 1px solid black;
+  transition: border var(--transition-time);
+}
+
+.card-name {
+  font-weight: var(--medium-weight-500);
+  font-family: inherit;
+}
+
+@media screen and (max-width: 1340px) {
+  #card-section {
+    justify-content: center;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  #card-section {
+    padding-inline: var(--left-right-space-em-med);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  #card-section {
+    padding-inline: var(--left-right-space-em-sm);
+  }
+}
+
+@media screen and (max-width: 690px) {
+  #card-section {
+    padding-inline: var(--left-right-space-em-xsm);
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .card-container {
+    width: 100%;
+  }
+  .card-container > img {
+    width: 250px;
+  }
+}
+/* Cards End */

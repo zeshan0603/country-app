@@ -24,14 +24,35 @@
   </head>
   <body>
     <nav id="nav">
-      <h1>GlobalGlance</h1>
-      <i class="fa-solid fa-burger hamburger"></i>
+      <h1 tabindex="0" id="navbrand" title="Click to change Theme">
+        GlobalGlance
+      </h1>
+      <i class="fa-solid fa-burger hamburger" title="Open Menu"></i>
       <ul class="active-nav-menu">
         <li><a href="#">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Help</a></li>
-        <i class="fa-solid fa-x x-hamb"></i>
+        <i class="fa-solid fa-x x-hamb" title="Close Menu"></i>
       </ul>
     </nav>
+    <!-- Hero Section -->
+    <main>
+      <section id="hero-section">
+        <div>
+          <p>
+            helps you get familiar with countries around the world. Select a
+            country to understand the value of this website.
+          </p>
+          <div class="input-container" title="Search a country">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input class="main-input" type="text" placeholder="Search country by name." oninput="handleChange(event)"/>
+          </div>
+        </div>
+      </section>
+      <!-- Card Section -->
+      <section id="card-section">
+        
+      </section>
+    </main>
   </body>
 </html>
